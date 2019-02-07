@@ -1,12 +1,17 @@
 import React, {Component} from 'react';
 import {Table, Button} from 'react-bootstrap';
+import {getClientes} from '../../../core/funcionesServerRequest';
 
 class ListaClientes extends Component{
 
+    componentWillMount(){
+        getClientes();
+    }
+
     render(){
         var clientes = this.props.clientes;
-        var clientesMostrar = clientes.map( (i) => (
-            <tr>
+        var clientesMostrar = clientes.map( (i, k) => (
+            <tr key={k}>
                 <td onClick={(e) => {this.handleClick(e, i)}}>{i.id}</td>
                 <td onClick={(e) => {this.handleClick(e, i)}}>{i.nombre_apellido}</td>
                 <td onClick={(e) => {this.handleClick(e, i)}}>{i.documento}</td>
